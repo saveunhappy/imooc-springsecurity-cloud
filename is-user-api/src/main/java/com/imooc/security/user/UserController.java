@@ -24,13 +24,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public User delete(@PathVariable User user) {
-        return user;
+    public User delete(@PathVariable Long id) {
+        return new User();
     }
 
     @GetMapping("/{id}")
-    public User get(@PathVariable User user) {
-        return user;
+    public User get(@PathVariable Long id) {
+        return new User();
     }
 
     @GetMapping
