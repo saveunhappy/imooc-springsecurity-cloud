@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private UserRepository userRepository;
 
     @PostMapping
     public User create(@RequestBody User user) {
@@ -34,11 +34,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List create(String name) {
-        //http://localhost:8080/users?name= ' or 1 = 1 or name = '
-        String sql = "SELECT id,name FROM user where name = '" + name + "'";
-//        String sql = "SELECT id,name FROM user where name = '' or 1=1 or name= '';
-        List data = jdbcTemplate.queryForList(sql);
-        return data;
+    public List<User> create(String name) {
+        return userRepository.findByName(name);
     }
 }
